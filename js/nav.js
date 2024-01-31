@@ -72,3 +72,14 @@ function updateNavOnLogin() {
   $navLogOut.show();
   $navUserProfile.text(`${currentUser.username}`).show();
 }
+
+const deleteLink = document.querySelector("#delete-acc");
+const deleteUser = async () => {
+  await axios({
+    url: `https://hack-or-snooze-v3.herokuapp.com/users/${currentUser.username}`,
+    method: "DELETE",
+    data: { token: currentUser.loginToken },
+  });
+  alert("You just deleted the account");
+};
+deleteLink.addEventListener("click", deleteUser);
